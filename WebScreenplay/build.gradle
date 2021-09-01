@@ -1,0 +1,60 @@
+tasks.withType(JavaCompile) {
+    options.encoding = "ISO-8859-1"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+compileJava.options.encoding = 'ISO-8859-1'
+
+group 'co.com.bancolombia'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.82")
+    }
+
+}
+
+ext {
+    serenityVersion = '2.1.8'
+    serenityCucumberVersion = '1.9.48'
+}
+
+dependencies {
+    compile "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
+    compile "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:$rootProject.ext.serenityVersion"
+    implementation "io.appium:java-client:6.0.0"
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation group: 'org.apache.poi', name: 'poi', version: '4.1.2'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.5'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.6.1'
+    compile group: 'org.apache.maven.plugins', name: 'maven-dependency-plugin', version: '3.1.2'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.assertj:assertj-core:3.9.1'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.7'
+}
+
+
+gradle.startParameter.continueOnFailure = true

@@ -8,7 +8,7 @@ apply plugin: 'net.serenity-bdd.aggregator'
 
 compileJava.options.encoding = 'ISO-8859-1'
 
-group 'co.com.bancolombia'
+group 'co.com.webapps'
 version '1.0-SNAPSHOT'
 
 repositories {
